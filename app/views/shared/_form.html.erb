@@ -1,19 +1,38 @@
-<%= form_for @song do |f| %>
-  <% @song.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
+<%= form_for [@song.artist, @song] do |f| %>
+
+  <% if @song.errors.any? %>
+    <div>
+      <ul>
+      <% @song.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
   <% end %>
-  <hr>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
 
-  <%= f.label :url %>
-  <%= f.text_field :url %>
+  <div class="form-group">
+    <h2><%= @song.artist.name %></h2>
+  </div>
 
-  <%= f.label :lyrics %>
-  <%= f.text_field :lyrics %>
 
-  <%= f.label :artist_id %>
-  <%= f.collection_select(:artist_id, Artist.all, :id, :name) %>
+  <div class="form-group">
+    <label>Name</label>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
 
-  <%= f.submit (@song.new_record? ? "Create" : "Update") %>
+  <div class="form-group">
+    <label>URL</label>
+    <%= f.text_field :url, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <label>Lyrics</label>
+    <%= f.text_area :lyrics, class: "form-control" %>
+  </div>
+
+
+
+  <div class="actions">
+    <%= f.submit "Save", class: "btn btn-primary" %>
+  </div>
 <% end %>

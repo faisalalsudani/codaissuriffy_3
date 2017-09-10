@@ -1,2 +1,19 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="home">
+  <h1>Welcome to Codaisseurify</h1>
+</div> <!-- end of home -->
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="artists">
+        <%= link_to image_tag("", class: "box-image"), artists_path %>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="songs">
+        <%= link_to image_tag("", class: "box-image"), artist_songs_path(:artist_id), class: "box-image-link" %>
+      </div>
+    </div>
+  </div>
+</div>

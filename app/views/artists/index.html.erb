@@ -1,26 +1,24 @@
-<div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        Artists
-      </div>
-      <div class="panel-body">
+<div class="artist-list">
 
-        <% @artists.each do |artist| %>
-        <div class="row">
-          <div class="col-md-7">
-            <h4><%= artist.name %></h4>
-          </div>
-          <div class="col-md-3 right">
-            <%= link_to "View", artist, class: "btn btn-default" %>
-            <%= link_to "Update", edit_artist_path(artist), class: "btn btn-default" %>
-          </div>
-        </div>
-        <% end %>
 
-      </div>
+  <div class="row">
+  <h1> List of Artists </h1>
+  <br/>
+    <% @artists.each do |artist| %>
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <br/>
+      <p class="artist-name"><%= link_to artist.name, artist_path(artist) %></p>
+      <% artist.photos.each do |photo| %>
+        <p><%= link_to image_tag(photo.image.thumbnail, class: "square-images"), artist_path(artist) %> </p>
+      <% end %>
     </div>
+    <% end %>
 
-    <%= link_to "Add new artist", new_artist_path, class: "btn btn-primary" %>
-  </div>
+
+
+</div>
+</div>
+<div class="links-div">
+<hr />
+<%= link_to "Add new artist", new_artist_path, class: "btn btn-default" %>
 </div>

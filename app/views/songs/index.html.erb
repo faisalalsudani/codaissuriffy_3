@@ -1,8 +1,20 @@
-<h1>Songs</h1>
+<div class="index-songs">
+  <h1>All songs</h1>
+  <div class="row">
+    <% @songs.each do |song| %>
+    <div class="col-sm-6">
 
-<% @songs.each do |song| %>
-  <p><%= link_to song.name, song_path(song.id) %></p>
-<% end %>
+      <div class="col-sm-6">
+        <p>Artist: <%= song.artist.name %> </p>
+      </div>
 
-<hr>
-<%= link_to "[New Song]", new_song_path %>
+      <div class="col-sm-6">
+        <p><%= link_to 'Edit', edit_artist_song_path(song.artist, song), class: "btn btn-primary" %></p>
+        <p><%= link_to 'Delete', [song.artist, song], data: {confirm: "Are you sure you want to delete this song?" }, :method => :delete, class: "btn btn-danger"  %></p>
+      </div>
+      <hr />
+
+    </div>
+    <% end %>
+  </div>
+</div>
