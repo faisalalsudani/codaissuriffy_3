@@ -1,0 +1,19 @@
+<%= form_for @song do |f| %>
+  <% @song.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  <hr>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :url %>
+  <%= f.text_field :url %>
+
+  <%= f.label :lyrics %>
+  <%= f.text_field :lyrics %>
+
+  <%= f.label :artist_id %>
+  <%= f.collection_select(:artist_id, Artist.all, :id, :name) %>
+
+  <%= f.submit (@song.new_record? ? "Create" : "Update") %>
+<% end %>

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @artist.name %>
+  <h4>Photos</h4>
+  <% @artist.photos.each do |photo| %>
+    <%= image_tag photo.image %>
+  <% end %>
+</p>
+
+<h4>List of Songs</h4>
+
+<% if @artist.songs.any? %>
+  <ul>
+    <% @artist.songs.each do |song| %>
+      <li><%= song.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no songs for this artist.</p>
+<% end %>
+<hr>
+<%= link_to 'Edit', edit_artist_path(@artist) %> |
+<%= link_to "[Delete]", artist_path(@artist.id), method: :delete, data: { confirm: "Are you sure?" } %>
+<hr>
+<%= link_to 'Back', artists_path %>

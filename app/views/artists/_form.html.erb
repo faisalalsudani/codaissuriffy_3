@@ -1,0 +1,13 @@
+<%= form_for @artist do |f| %>
+  <% @artist.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  <hr>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :bio %>
+  <%= f.text_area :bio %>
+
+  <%= f.submit (@artist.new_record? ? "Create" : "Update") %>
+<% end %>
