@@ -1,6 +1,13 @@
-<h1> <%= @song.name %></h1>
-<audio controls>
-	<source src="<%= @song.url %>" type="audio/mpeg" />
-	<a href="<%= @song.url %>"><%= @song.name %></a>
-</audio>
-<p> <%= @song.lyrics %> </p>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+			<h1><%= @song.name %></h1>
+		</div>
+		<audio controls>
+			<source src="<%= @song.url %>" type="audio/mpeg" />
+			<a href="<%= @song.url %>"><%= @song.name %></a>
+		</audio>
+		<p> <%= @song.lyrics %> </p>
+
+	</div>
+</div>

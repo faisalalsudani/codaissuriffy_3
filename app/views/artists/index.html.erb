@@ -1,24 +1,22 @@
-<div class="artist-list">
+<div class="container">
+  <div class="list-of-artists">
+    <h1>All Artists</h1>
+    <p><%= link_to "Add new artist", new_artist_path, class: "btn btn-default" %></p>
+    <div class="row">
+    <br/>
+      <% @artists.each do |artist| %>
+      <div class="col-md-4">
+        <div class="card" style="width: 20rem;">
+            <% artist.photos.each do |photo| %>
+              <%= link_to image_tag(photo.image.thumbnail, class: "card-img-top"), artist_path(artist) %>
+            <% end %>
 
-
-  <div class="row">
-  <h1> List of Artists </h1>
-  <br/>
-    <% @artists.each do |artist| %>
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <br/>
-      <p class="artist-name"><%= link_to artist.name, artist_path(artist) %></p>
-      <% artist.photos.each do |photo| %>
-        <p><%= link_to image_tag(photo.image.thumbnail, class: "square-images"), artist_path(artist) %> </p>
+          <div class="card-block">
+            <h4 class="card-title"><%= link_to artist.name, artist_path(artist) %></h4>
+          </div>
+        </div>
+      </div>
       <% end %>
-    </div>
-    <% end %>
-
-
-
-</div>
-</div>
-<div class="links-div">
-<hr />
-<%= link_to "Add new artist", new_artist_path, class: "btn btn-default" %>
+  </div>
+  </div>
 </div>

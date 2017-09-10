@@ -2,17 +2,19 @@
   <h1>Welcome to Codaisseurify</h1>
 </div> <!-- end of home -->
 
-<div class="container-fluid">
+<div class="container-fluid home-section">
   <div class="row">
     <div class="col-sm-6">
       <div class="artists">
-        <%= link_to image_tag("", class: "box-image"), artists_path %>
+        <img src="https://i.ytimg.com/vi/aIiRY7E9i10/maxresdefault.jpg" alt="">
+        <%= link_to "DISCOVER ALL ARTISTS", artists_path %>
       </div>
     </div>
 
     <div class="col-sm-6">
       <div class="songs">
-        <%= link_to image_tag("", class: "box-image"), artist_songs_path(:artist_id), class: "box-image-link" %>
+        <img src="https://i.pinimg.com/originals/b3/75/9b/b3759b96bf2ffd983eba5be212e58741.jpg" alt="">
+        <%= link_to "LISTEN TO THE BEST SONGS", artist_songs_path(:artist_id), class: "box-image-link" %>
       </div>
     </div>
   </div>

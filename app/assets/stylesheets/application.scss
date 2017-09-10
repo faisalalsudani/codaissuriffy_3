@@ -2,3 +2,105 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.home {
+  background: lavender;
+  height: 120px;
+  margin-top: -40px;
+  text-align: center;
+  padding:0px;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.home h1 {
+  font-size: 40px;
+  text-transform: uppercase;
+  font-weight: 800;
+  padding-top: 30px;
+}
+
+.home-section {
+  margin-top: 50px;
+}
+
+.artists img {
+  width: 100%;
+  height: 300px;
+}
+
+.artists {
+  text-align: center;
+}
+
+.artists a {
+  font-size: 20px;
+  font-weight: 400;
+  color: cornflowerblue;
+  background: antiquewhite;
+    padding: 22px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.artists a:hover {
+  text-decoration: none;
+  background: lightblue;
+  color: grey;
+  transition: all 0.3s ease-in-out;
+}
+
+.songs img {
+  width: 100%;
+  height: 300px;
+}
+
+.songs {
+  text-align: center;
+}
+
+.songs a {
+  font-size: 20px;
+  font-weight: 400;
+  color: cornflowerblue;
+  background: antiquewhite;
+    padding: 22px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+.songs a:hover {
+  text-decoration: none;
+  background: lightgreen;
+  color: grey;
+  transition: all 0.3s ease-in-out;
+}
+
+.card-block {
+  width: 300px;
+  text-align: center;
+  background: rebeccapurple;
+  padding: 10px;
+}
+
+.card-block:hover {
+  background: #3b0075;
+  transition: all 0.3s ease-in-out;
+}
+
+.card-block a {
+  color:white;
+  text-transform: uppercase;
+}
+
+.card-block a:hover {
+  text-decoration: none;
+}
+
+.card {
+  border-radius: 4px;
+}
+
+.artist-show img {
+  border-radius: 50%;
+  width: 200px;;
+}
