@@ -1,0 +1,23 @@
+<% @artist.songs.each do |song| %>
+
+
+<div class="row songs-show">
+  <div class="col-md-8">
+    <h3><%= link_to song.name, artist_song_path(song.artist, song)  %></h3>
+    <audio controls>
+      <source src="<%= song.url %>" type="audio/mpeg" />
+      <a href="<%= song.url %>"><%= song.name %></a>
+    </audio>
+  </div>
+  <div class="col-md-4">
+    <div class="song-controller">
+      <%= link_to 'Edit', edit_artist_song_path(song.artist, song), class: "btn btn-primary" %>
+      <%= link_to 'Delete', [song.artist, song], data: {confirm: "Are you sure you want to delete this song?" }, :method => :delete, class: "btn btn-primary"  %>
+    </div>
+  </div>
+  <br>
+  <hr>
+  <br>
+</div>
+
+<% end %>

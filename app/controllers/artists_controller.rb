@@ -1,8 +1,8 @@
 class ArtistsController < ApplicationController
-
-
+  
   def index
       @artists = Artist.all
+      @songs    = Song.new
   end
 
   def show
