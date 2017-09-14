@@ -1,5 +1,6 @@
 <div class="container">
   <div class="row">
+
     <div class="col-xs-4 artist-show">
       <h1> <%= @artist.name %> </h1>
       <% @artist.photos.each do |photo| %>
@@ -15,7 +16,6 @@
       <p><%= link_to "Add song", new_artist_song_path(@artist), class: "btn btn-success" %></p>
 
       <% @artist.songs.each do |song| %>
-
       <h3><%= link_to song.name, artist_song_path(song.artist, song)  %></h3>
       <audio controls>
         <source src="<%= song.url %>" type="audio/mpeg" />
@@ -23,10 +23,11 @@
       </audio>
       <br>
       <%= link_to 'Edit', edit_artist_song_path(song.artist, song), class: "btn btn-primary" %>
-      <%= link_to 'Delete', [song.artist, song], data: {confirm: "Are you sure you want to delete this song?" }, :method => :delete, class: "btn btn-primary"  %>
+      <%= link_to 'Delete', artist_song_path(@artist.id, check: song.id), data: {confirm: "Are you sure you want to delete this song?" }, :method => :delete, class: "btn btn-primary"  %>
       <hr/>
+      <% end %>
 
-    <% end %>
+    
     </div>
 
   </div>
