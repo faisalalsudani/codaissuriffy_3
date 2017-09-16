@@ -2,7 +2,7 @@
   <div class="row">
 
     <div class="col-xs-4 artist-show">
-      <h1> <%= @artist.name %> </h1>
+      <h1><%= @artist.name %></h1>
       <% @artist.photos.each do |photo| %>
           <%= image_tag photo.image.thumbnail %>
       <% end %>
@@ -12,27 +12,22 @@
     </div>
 
     <div class="col-md-8">
+      <% if notice.present? %>
+        <div class="alert alert-info" role="alert">
+        <%= notice %>
       <h2> List of Songs: </h2>
       <!-- <p><%= link_to "Add song", new_artist_song_path(@artist), class: "btn btn-success" %></p> -->
 
-      <% if notice.present? %>
-        <div class="alert alert-info" role="alert">
-          <%= notice %>
         </div>
       <% end %>
-
-      <%= render "newsong", song: @song %>
+      <%= render "addSong", song: @song %>
+      <hr />
+      <div class="row" id="container_songs">
+       <%= render "song" %>
+      </div>
       <hr>
-
-      <table class="table table-striped" id="todoList">
-      <%= render "songs" %>
-    </table>
-
     </div>
-
   </div>
-
-
   <%= link_to "Edit artist", edit_artist_path, class: "btn btn-success" %>
   <%= link_to "Delete artist", artist_path(@artist.id), method: :delete, data: {confirm: "NOTE: Deleting an artist will delete all associated songs. \nDo you wish to continue?" }, class: "btn btn-danger" %>
 </div>

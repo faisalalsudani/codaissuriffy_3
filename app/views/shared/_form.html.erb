@@ -1,6 +1,6 @@
 <%= form_for [@song.artist, @song] do |f| %>
 
-  <% if @song.errors.any? %>
+  <!-- <% if @song.errors.any? %>
     <div>
       <ul>
       <% @song.errors.full_messages.each do |msg| %>
@@ -8,7 +8,7 @@
       <% end %>
       </ul>
     </div>
-  <% end %>
+  <% end %> -->
 
   <div class="form-group">
     <h2><%= @song.artist.name %></h2>
