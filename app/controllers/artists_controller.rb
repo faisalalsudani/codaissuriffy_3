@@ -1,14 +1,14 @@
 class ArtistsController < ApplicationController
 
-
   def index
       @artists = Artist.all
   end
 
   def show
-    @artist = Artist.find(params[:id])
-    @songs = @artist.songs
-    @photos = @artist.photos
+    @artist   = Artist.find(params[:id])
+    @songs    = @artist.songs
+    @song     = Song.new
+    @photos   = @artist.photos
   end
 
   def new
@@ -18,7 +18,7 @@ class ArtistsController < ApplicationController
   def create
     @artist = Artist.new(artist_params)
     if @artist.save
-      image_params.each do |image|
+        image_params.each do |image|
         @artist.photos.create(image: image)
       end
       redirect_to @artist, notice: "Artist created "
@@ -50,6 +50,9 @@ class ArtistsController < ApplicationController
 
     redirect_to artists_path
   end
+
+
+
 
   private
   def image_params

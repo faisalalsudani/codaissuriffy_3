@@ -15,12 +15,21 @@ class SongsController < ApplicationController
 
   def create
     artist = Artist.find(params[:artist_id])
+
     @song = artist.songs.create(song_params)
-    if @song.save
-      redirect_to @song.artist, notice: "Song craeted"
-    else
-      render :new
+
+    respond_to do |format|
+      if @song.save
+        format.html { redirect_to @song.artist, notice: 'Song created.' }
+        format.json { render :show, status: :created, location: @artist }
+        format.js
+      else
+        format.html { render :new }
+        format.json { render json: @song.errors, status: :unprocessable_entity }
+        format.js
+      end
     end
+
   end
 
   def edit
@@ -42,13 +51,17 @@ class SongsController < ApplicationController
   end
 
   def destroy
-    artist = Artist.find(params[:artist_id])
 
-    @song = Song.find(params[:check])
     @song.destroy
 
-    redirect_to @song.artist
+    respond_to do |format|
+      format.html { redirect_to @song.artist, notice: "Song deleted" }
+      format.json { head :no_content }
+      format.js
+    end
   end
+
+
 
   private
   def song_params

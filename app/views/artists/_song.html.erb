@@ -1,0 +1,20 @@
+<h2> List of Songs:</h2><p id="total-count"><%= @artist.songs.length %> songs
+
+<!-- <ul id="songs">
+<% @artist.songs.each do |song| %>
+  <li class="song-<%= song.name %>">
+  <%= song.name %>
+  <%= link_to 'Edit', edit_artist_song_path(song.artist, song), class: "btn btn-primary" %>
+  <%= link_to "Delete", artist_song_path(song.artist, song), method: :delete, remote: true %>
+  </li>
+<% end %>
+</ul> -->
+
+<% @artist.songs.each do |song| %>
+<div class="col-md-4 blog-main box text-center" id="song_<%= song.id %>">
+  <div class="panel panel-info"><!-- Panel Info -->
+  <h3 class="panel-title"><%= song.name %></h3>
+  <%= link_to "Delete", artist_song_path(song.artist.id, song.id), method: :delete, remote: true %>
+  </div><!-- Panel Info -->
+</div>
+<% end %>

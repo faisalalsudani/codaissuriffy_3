@@ -20,9 +20,10 @@ class Api::SongsController < ApplicationController
 
     if song.save
       render status: 201, json: {
-        message: "Song created",
+        message: "Song created hier",
         song: song
       }.to_json
+
     else
       render status: 422, json: {
         errors: song.errors
@@ -37,21 +38,6 @@ class Api::SongsController < ApplicationController
     render status: 200, json: {
       message: "Song deleted"
     }.to_json
-  end
-
-  def update
-    song = Song.find(params[:id])
-    if song.update(song_params)
-      render status: 200, json: {
-        message: "Song updated",
-        song: song
-      }.to_json
-    else
-       render status: 422, json: {
-        message: "The song could not be updated",
-        errors: song.errors
-      }.to_json
-    end
   end
 
 
