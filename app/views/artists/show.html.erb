@@ -15,6 +15,9 @@
       <% if notice.present? %>
         <div class="alert alert-info" role="alert">
         <%= notice %>
+      <h2> List of Songs: </h2>
+      <!-- <p><%= link_to "Add song", new_artist_song_path(@artist), class: "btn btn-success" %></p> -->
+
         </div>
       <% end %>
       <%= render "addSong", song: @song %>
@@ -22,7 +25,7 @@
       <div class="row" id="container_songs">
        <%= render "song" %>
       </div>
-
+      <hr>
     </div>
   </div>
   <%= link_to "Edit artist", edit_artist_path, class: "btn btn-success" %>
