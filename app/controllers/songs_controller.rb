@@ -1,7 +1,7 @@
 class SongsController < ApplicationController
   def index
     @songs = Song.all
-    @song = Song.new
+    # @song = Song.new
   end
 
   def show
@@ -12,6 +12,7 @@ class SongsController < ApplicationController
   def new
     artist = Artist.find(params[:artist_id])
     @song = artist.songs.build
+    @song = Song.new
   end
 
   def create
@@ -19,17 +20,11 @@ class SongsController < ApplicationController
 
     @song = artist.songs.create(song_params)
 
-    respond_to do |format|
       if @song.save
-        format.html { redirect_to @song.artist, notice: 'Song created.' }
-        format.json { render :show, status: :created, location: @artist }
-        format.js
+         redirect_to @song.artist
       else
-        format.html { render :new }
-        format.json { render json: @song.errors, status: :unprocessable_entity }
-        format.js
+        render :new
       end
-    end
 
   end
 
@@ -52,14 +47,12 @@ class SongsController < ApplicationController
   end
 
   def destroy
-
+    @song = Song.find(params[:id])
+    @artist = @song.artist
+    @deleteAllSongs = Song.all
     @song.destroy
-
-    respond_to do |format|
-      format.html { redirect_to @song.artist, notice: "Song deleted" }
-      format.json { head :no_content }
-      format.js
-    end
+    @deleteAllSongs.destroy
+    redirect_to @song.artist
   end
 
 
