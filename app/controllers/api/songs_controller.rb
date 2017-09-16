@@ -20,7 +20,7 @@ class Api::SongsController < ApplicationController
 
     if song.save
       render status: 201, json: {
-        message: "Song created hier",
+        message: "Song created with ajax!",
         song: song
       }.to_json
 
@@ -39,6 +39,7 @@ class Api::SongsController < ApplicationController
       message: "Song deleted"
     }.to_json
   end
+
 
 
   private
