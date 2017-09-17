@@ -1,13 +1,15 @@
 <h2> List of Songs:</h2>
-<p id="total-count"><%= @artist.songs.length %> songs
-<ul class="song-list">
-  <% @artist.songs.each do |song| %>
-  <li class="song-<%= song.id %> song-delete">
-    <p><%= song.name %></p>
-    <p id="<%= song.id %>" class="btn btn-sm button-artist delete-button">Delete Song</p>
-  </li>
-  <% end %>
-</ul>
+<!-- <p id="total-count"><%= @artist.songs.length %> songs -->
+<div class="list-of-songs">
+  <ul class="song-list">
+    <% @artist.songs.each do |song| %>
+    <li class="song-<%= song.id %> song-delete">
+      <p><%= song.name %></p>
+      <p id="<%="#{song.id}"%>" class="btn btn-sm button-artist delete-song">Delete Song</p>
+    </li>
+    <% end %>
+  </ul>
+</div>
   <% if @artist.songs.length > 0 %>
 <p class="delete-button btn">Delete all songs</p>
   <% end %>
