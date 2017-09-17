@@ -26,9 +26,7 @@ function createsong(name) {
       dataType: "json"
     }).done(function(data) {
        var songId = data.id;
-      // var songId = '<%= song.id %>'
       console.log(data)
-
       console.log(songId)
       var SongItem = $('<li class="song"> <p  id="' + songId + '">' + name + '</p> <p class="btn btn-sm button-artist delete-button">Delete Song</p></li>');
       $(".song-list").append( SongItem );
@@ -56,23 +54,24 @@ function deleteSong(songId) {
   });
 }
 
-function deleteAllSongs(event){
-  console.log("Deleted!");
-  $('.song-list').removeSong();
-}
-
 function removeSong(){
   var songId = $(this).attr("id");
   deleteSong(songId);
 }
 
+function deleteAllSongs(event){
+  console.log("Deleted!");
+  $('.song-list li').removeSong();
+}
+
+
 function newEvent(){
-  $(".delete-button").off();
-  $(".delete-button").on('click', removeSong);
+  $(".delete-song").off();
+  $(".delete-song").on('click', removeSong);
 }
 
 $(document).ready(function() {
   $("form").bind('submit', submitsong);
-  $(".remove-songs").bind('click', deleteAllSongs);
+  $(".delete-all-songs").bind('click', deleteAllSongs);
   newEvent()
 });
