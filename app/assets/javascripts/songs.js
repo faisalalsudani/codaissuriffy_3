@@ -25,17 +25,17 @@ function createsong(name) {
       contentType: "application/json",
       dataType: "json"
     }).done(function(data) {
-       var songId = data.id;
+       // var songId = data.id;
+       var songId = $('li').data('id');
       console.log(data)
       console.log(songId)
       var SongItem = $('<li class="song"> <p  id="' + songId + '">' + name + '</p> <p class="btn btn-sm button-artist delete-button">Delete Song</p></li>');
-      $(".song-list").append( SongItem );
+      $(".song-list").append( SongItem ).bind('click', deleteSong);;
       newEvent();
       console.log(songId);
-
+      location.reload(true);
+      $("#addSong").modal('hide');
   });
-  $("#addSong").modal('hide');
-  window.location.reload();
 
 }
 
@@ -59,11 +59,16 @@ function removeSong(){
   deleteSong(songId);
 }
 
-function deleteAllSongs(event){
-  console.log("Deleted!");
-  $('.song-list li').removeSong();
-}
 
+// function deleteAllSongs(event) {
+//   event.preventDefault();
+//   $(".song-list").remove();
+// }
+
+function deleteAllSongs(event) {
+  event.preventDefault();
+  $(".delete-song").trigger( "click" );
+}
 
 function newEvent(){
   $(".delete-song").off();
