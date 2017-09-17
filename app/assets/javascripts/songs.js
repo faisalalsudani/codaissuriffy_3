@@ -25,8 +25,8 @@ function createsong(name) {
       contentType: "application/json",
       dataType: "json"
     }).done(function(data) {
-      // var songId = data.id;
-      var songId = '<%= song.id %>'
+       var songId = data.id;
+      // var songId = '<%= song.id %>'
       console.log(data)
 
       console.log(songId)
