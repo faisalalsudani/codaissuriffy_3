@@ -14,9 +14,8 @@ function submitsong(event) {
 function createsong(name) {
   var pathName = location.pathname;
   var artistId = pathName.split("/").pop();
-
     $.ajax({
-      type: 'POST',
+      type: "POST",
       url:  "../../api" + pathName + "/songs.json",
       data: JSON.stringify({
           name: name,
@@ -25,40 +24,13 @@ function createsong(name) {
       contentType: "application/json",
       dataType: "json"
     }).done(function(data) {
-      // var songId = data.id;
-      var songId = '<%= song.id %>'
-      console.log(data)
 
-      console.log(songId)
-      var SongItem = $('<li class="song"> <p  id="' + songId + '">' + name + '</p> <p class="btn btn-sm button-artist delete-button">Delete Song</p></li>');
+      var songId = data.id;
+      var SongItem = $('<li class="song"> <p  id="' + songId + '">' + name + '</p> <p class="btn btn-sm button-artist delete-song">Delete Song</p></li>');
       $(".song-list").append( SongItem );
-      newEvent();
-      console.log(songId);
-
+      refreshEventHandlers();
+      $("#addSong").modal('hide');
   });
-  $("#addSong").modal('hide');
-  window.location.reload();
-
-}
-
-function deleteSong(songId) {
-  var pathName = location.pathname;
-  $.ajax({
-    type: "DELETE",
-    url:  "../../api" + pathName + "/songs/ " + songId + ".json",
-    contentType: "application/json",
-    dataType: "json"
-  })
-  .done(function(data) {
-    console.log(data);
-    $("#" + songId).parent().remove();
-    console.log("Deleted!");
-  });
-}
-
-function deleteAllSongs(event){
-  console.log("Deleted!");
-  $('.song-list').removeSong();
 }
 
 function removeSong(){
@@ -66,13 +38,33 @@ function removeSong(){
   deleteSong(songId);
 }
 
-function newEvent(){
+function removeAllSongs() {
+  $.each($(".delete-button"), function(index, song) {
+    var songId = $(song).attr("id");
+    deleteSong(songId);
+  });
+}
+
+function deleteSong( songId) {
+  var pathName = location.pathname;
+  $.ajax({
+    type: "DELETE",
+    url:  "../../api" + pathName + "/songs/ " + songId +".json",
+    contentType: "application/json",
+    dataType: "json"
+  })
+  .done(function(data) {
+    $("#" + songId).parent().remove();
+  });
+}
+
+function refreshEventHandlers(){
   $(".delete-button").off();
   $(".delete-button").on('click', removeSong);
 }
 
 $(document).ready(function() {
   $("form").bind('submit', submitsong);
-  $(".remove-songs").bind('click', deleteAllSongs);
-  newEvent()
+  $(".delete-all-songs").bind('click', removeAllSongs);
+  refreshEventHandlers()
 });
