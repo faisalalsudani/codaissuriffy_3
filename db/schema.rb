@@ -23,14 +23,6 @@ ActiveRecord::Schema.define(version: 20170910160332) do
     t.string "photos"
   end
 
-  create_table "photoos", force: :cascade do |t|
-    t.bigint "artist_id"
-    t.string "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["artist_id"], name: "index_photoos_on_artist_id"
-  end
-
   create_table "photos", force: :cascade do |t|
     t.bigint "artist_id"
     t.string "image"
@@ -49,7 +41,6 @@ ActiveRecord::Schema.define(version: 20170910160332) do
     t.index ["artist_id"], name: "index_songs_on_artist_id"
   end
 
-  add_foreign_key "photoos", "artists"
   add_foreign_key "photos", "artists"
   add_foreign_key "songs", "artists"
 end
